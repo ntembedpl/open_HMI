@@ -596,9 +596,10 @@ int main() {
             gui1->screen_vector[gui1->actual_screen]->VideoStart(13);
             gui1->enable=true;
 
-            cv::waitKeyEx(250);
+            
             gui1->screen_vector[gui1->actual_screen]->element_vector[3]->active =
                     true;
+cv::waitKeyEx(500);
 
         }
 
