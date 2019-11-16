@@ -2,5 +2,6 @@
 language: 'eng'
 customProgram: './data/programs/'
 scripts: './data/scripts/'
+videos: './data/videos/'
 usbPort: '/dev/ttyACM0'
 criovolume: 5

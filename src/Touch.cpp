@@ -52,13 +52,15 @@ int Screen1_callback(std::unique_ptr<Control>&control,Touch touch, std::unique_p
 		return 0;
 	}
 	else if (touch.id == "hot") {
-		gui->screen_vector[1]->setImage(1,10);
+		//gui->screen_vector[1]->setImage(1,10);
+
 		return 1;
 	}
 	else if (touch.id == "crio") {
-		gui->screen_vector[1]->setImage(4,10);
+		//gui->screen_vector[1]->setImage(4,10);
         return 2;
 	}
+
     else if (touch.id == "stop") {
         SendFrame(config->config.usbPort,0,0,0,0,0);
        control->SetParams(0,0,0,0);
@@ -226,14 +228,6 @@ int Screen4_callback(std::unique_ptr<Control>&control,Touch touch, std::unique_p
     else if(touch.id == "pr6")
     {
         return 9;
-    }
-    else if(touch.id == "pr7")
-    {
-        return 10;
-    }
-    else if(touch.id == "pr8")
-    {
-        return 11;
     }
 	return -1;
 }

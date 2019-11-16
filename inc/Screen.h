@@ -42,6 +42,7 @@ public:
 	void VideoStart(int element);
 	void VideoStop(int element);
     void VideoToggle(int element);
+	void VideoReload(int element,std::string path);
 
     void change_value(int element);
 

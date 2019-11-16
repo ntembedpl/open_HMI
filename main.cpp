@@ -18,7 +18,7 @@
 #include "inc/Programs.h"
 
 #define FrameTime 40
-//#define intro
+#define intro
 //#define crioTest
 
 bool touch_flag = false;
@@ -180,26 +180,6 @@ void screen2() {
 			202,8, "trackbar1");
 	gui1->screen_vector[gui1->actual_screen]->add_trackbar("/r1", "/s2", 320,
 			406, 7, "trackbar2");
-
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/hot", 40, y - 165,
-	//		"hot");
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/cold", 1190, y - 165,
-	//		"cold");
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/time", 40, y + 135,
-	//		"time");
-
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/max", x-440, y - 120, "max1");
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/max", x+360, y - 120, "max2");
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/5050", x-50, y - 120, "5050");
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/7030", x-250, y - 120, "7030");
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/3070", x+150, y - 120, "3070");
-
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/5", x-425, y + 180, "5");
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/10", x-265, y + 180, "10");
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/15", x-105, y + 180, "15");
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/20", x+55, y + 180, "20");
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/25", x+215, y + 180, "25");
-	//gui1->screen_vector[gui1->actual_screen]->add_image("/30", x+375, y + 180, "30");
 }
 
 void screen3() {
@@ -238,9 +218,6 @@ void screen3() {
 			"fan");
 	gui1->screen_vector[gui1->actual_screen]->add_image("/crio", 736, 545,
 			"crio");
-//nowe
-	gui1->screen_vector[gui1->actual_screen]->add_image("/video", 352, 301,
-			"video");//!!
 	gui1->screen_vector[gui1->actual_screen]->add_button("/v1", 376, 194,
 			"v1");
 	gui1->screen_vector[gui1->actual_screen]->add_button("/v2", 531, 194,
@@ -249,7 +226,6 @@ void screen3() {
 			"v3");
 	gui1->screen_vector[gui1->actual_screen]->add_button("/v4", 531, 470,
 			"v4");
-	gui1->screen_vector[gui1->actual_screen]->add_image("/imgVid", 352, 301, "30");
 }
 
 void screen4() {
@@ -268,6 +244,16 @@ void screen4() {
 			"pr5");
 	gui1->screen_vector[gui1->actual_screen]->add_button("/pr6", 1034, 464,
 			"pr6");
+
+    for(int i=1;i<7;i++)
+    {
+        std::fstream fin(("./"+config->config.videos+"/pr"+std::to_string(i)+".mp4").c_str());
+
+        if(fin.fail()) {
+            gui1->screen_vector[gui1->actual_screen]->element_vector[i]->active =
+                    false;
+        }
+    }
 }
 
 void screen5() {
@@ -464,60 +450,6 @@ void ProgramTimer()
     }
 }
 
-//void ProgramTimer()
-//{
-//    for(;;) {
-//        if (gui1->enable == true) {
-//            std::this_thread::sleep_for(std::chrono::microseconds(1));
-//        } else {
-//
-//            for(int i=0;i<(programs->ActualTime-2)*2;i++)
-//            {
-//                if (programs->isEnd == false) {
-//                    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-//                }
-//            }
-//
-//            if (programs->signals.redFuture == true) {
-//                gui2->screen_vector[1]->setImage(1, 2);
-//            }
-//            if (programs->signals.blueFuture == true) {
-//                gui2->screen_vector[1]->setImage(1, 1);
-//            }
-//
-//            for(int i=0;i<4;i++)
-//            {
-//                if (programs->isEnd == false) {
-//                    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-//                }
-//            }
-//            //std::this_thread::sleep_for(std::chrono::seconds(2));
-//
-//            if (programs->isEnd == false) {
-//
-//                programs->Refresh();
-//
-//                gui1->screen_vector[1]->setImage(0, 8);
-//                gui1->screen_vector[1]->setImage(0, 9);
-//
-//                gui2->screen_vector[1]->setImage(0, 1);
-//                gui2->screen_vector[1]->setImage(0, 2);
-//                fan = false;
-//
-//                if (programs->signals.redActual == true) {
-//                    gui1->screen_vector[1]->setImage(1, 8);
-//                }
-//                if (programs->signals.blueActual == true) {
-//                    gui1->screen_vector[1]->setImage(1, 9);
-//                }
-//                if (programs->signals.fan == true) {
-//                    fan = true;
-//                }
-//            }
-//        }
-//    }
-//}
-
 int main() {
 
     SendFrame(config->config.usbPort,"Demo");
@@ -541,13 +473,13 @@ int main() {
 	//comment to disable intro
     gui1->screen_vector[0]->VideoStart(0);
     gui2->screen_vector[0]->VideoStart(0);
-    system(("mplayer -vo null "+gui1->path+"/s0/intro.avi &").c_str());
+    //system(("mplayer -vo null "+gui1->path+"/s0/intro.avi &").c_str());
 	while(gui1->screen_vector[gui1->actual_screen]->element_vector[0]->is_end==0)
 	{
 		std::chrono::steady_clock::time_point begin=std::chrono::steady_clock::now();
 		gui1->draw_screen();
 		gui2->draw_screen();
-		cv::waitKey(1);
+		cv::waitKey(10);
 		std::chrono::steady_clock::time_point end=std::chrono::steady_clock::now();
 		auto count=std::chrono::duration_cast<std::chrono::milliseconds>(end-begin).count();
 		if(count<FrameTime)
@@ -591,7 +523,7 @@ int main() {
 
 	gui1->draw_screen();
 
-    char key=cv::waitKey(1);
+    char key=cv::waitKey(10);
 	if(key=='d')
 	{
 		gui1->turnBoxes();
@@ -623,27 +555,6 @@ int main() {
 
         if(signal==12)
         {
-            gui1->screen_vector[1]->VideoStop(11);
-            gui2->screen_vector[1]->VideoStop(0);
-
-            gui1->screen_vector[gui1->actual_screen]->element_vector[0]->active =
-					true;
-			gui1->screen_vector[gui1->actual_screen]->element_vector[1]->active =
-					true;
-			gui1->screen_vector[gui1->actual_screen]->element_vector[2]->active =
-					true;
-			gui1->screen_vector[gui1->actual_screen]->element_vector[3]->active =
-					true;
-			gui1->screen_vector[gui1->actual_screen]->element_vector[4]->active =
-					true;
-
-            gui1->screen_vector[gui1->actual_screen]->element_vector[5]->active =
-                    false;
-            gui1->screen_vector[gui1->actual_screen]->element_vector[12]->active =
-                    false;
-
-            gui1->enable=true;
-
             gui1->screen_vector[1]->setImage(0,8);
             gui1->screen_vector[1]->setImage(0,9);
 
@@ -652,11 +563,43 @@ int main() {
 
             gui1->screen_vector[1]->setImage(0,10);
 
+            gui1->screen_vector[1]->VideoStop(11);
+            gui2->screen_vector[1]->VideoStop(0);
+
+
+
             fan=false;
             programs->Stop();
             setClock(0,gui2);
             arrow=false;
+
+
+
+
+            gui1->screen_vector[gui1->actual_screen]->element_vector[5]->active =
+                    false;
+            gui1->screen_vector[gui1->actual_screen]->element_vector[12]->active =
+                    false;
+
+            gui1->screen_vector[gui1->actual_screen]->element_vector[0]->active =
+                    true;
+            gui1->screen_vector[gui1->actual_screen]->element_vector[1]->active =
+                    true;
+            gui1->screen_vector[gui1->actual_screen]->element_vector[2]->active =
+                    true;
+
+            gui1->screen_vector[gui1->actual_screen]->element_vector[4]->active =
+                    true;
+
+
+
             gui1->screen_vector[gui1->actual_screen]->VideoStart(13);
+            gui1->enable=true;
+
+            cv::waitKeyEx(250);
+            gui1->screen_vector[gui1->actual_screen]->element_vector[3]->active =
+                    true;
+
         }
 
         else if(signal==14)
@@ -672,9 +615,54 @@ int main() {
 			gui2->screen_vector[1]->VideoToggle(0);
             arrow=!arrow;
 		}
+        else if(signal==0)
+        {
+            gui1->screen_vector[1]->VideoStop(11);
+            gui2->screen_vector[1]->VideoStop(0);
+        }
 
         else if((signal>=1&&signal<=11))
         {
+            if(signal==1)
+            {
+                gui1->screen_vector[1]->VideoReload(11,("./"+config->config.videos+"/hot").c_str());
+                gui2->screen_vector[1]->VideoReload(0,("./"+config->config.videos+"/hot").c_str());
+            }
+            else if(signal==2)
+            {
+                gui1->screen_vector[1]->VideoReload(11,("./"+config->config.videos+"/crio").c_str());
+                gui2->screen_vector[1]->VideoReload(0,("./"+config->config.videos+"/crio").c_str());
+            }
+            else if(signal==4)
+            {
+                gui1->screen_vector[1]->VideoReload(11,("./"+config->config.videos+"/pr1").c_str());
+                gui2->screen_vector[1]->VideoReload(0,("./"+config->config.videos+"/pr1").c_str());
+            }
+            else if(signal==5)
+            {
+                gui1->screen_vector[1]->VideoReload(11,("./"+config->config.videos+"/pr2").c_str());
+                gui2->screen_vector[1]->VideoReload(0,("./"+config->config.videos+"/pr2").c_str());
+            }
+            else if(signal==6)
+            {
+                gui1->screen_vector[1]->VideoReload(11,("./"+config->config.videos+"/pr3").c_str());
+                gui2->screen_vector[1]->VideoReload(0,("./"+config->config.videos+"/pr3").c_str());
+            }
+            else if(signal==7)
+            {
+                gui1->screen_vector[1]->VideoReload(11,("./"+config->config.videos+"/pr4").c_str());
+                gui2->screen_vector[1]->VideoReload(0,("./"+config->config.videos+"/pr4").c_str());
+            }
+            else if(signal==8)
+            {
+                gui1->screen_vector[1]->VideoReload(11,("./"+config->config.videos+"/pr5").c_str());
+                gui2->screen_vector[1]->VideoReload(0,("./"+config->config.videos+"/pr5").c_str());
+            }
+            else if(signal==9)
+            {
+                gui1->screen_vector[1]->VideoReload(11,("./"+config->config.videos+"/pr6").c_str());
+                gui2->screen_vector[1]->VideoReload(0,("./"+config->config.videos+"/pr6").c_str());
+            }
             programs->SetProgramID(signal);
             gui1->screen_vector[1]->VideoStart(11);
             gui2->screen_vector[1]->VideoStart(0);

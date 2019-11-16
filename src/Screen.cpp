@@ -122,3 +122,8 @@ std::string Screen::GetPath()
 {
 	return this->path;
 }
+
+void Screen::VideoReload(int element,std::string path)
+{
+    this->element_vector[element]->Reload(path);
+}

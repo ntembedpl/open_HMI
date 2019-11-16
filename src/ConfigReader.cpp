@@ -37,6 +37,10 @@ void ConfigReader::Parse(std::string path)
 	{
 		file["scripts"]>>config.scripts;
 	}
+	if(!file["videos"].empty())
+	{
+		file["videos"]>>config.videos;
+	}
 	if(!file["criovolume"].empty())
 	{
 		file["criovolume"]>>config.crioVolume;

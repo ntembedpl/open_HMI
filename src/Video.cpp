@@ -6,12 +6,13 @@
  */
 
 #include "../inc/Video.h"
+#define FORMAT ".mp4"
 
 Video::Video(std::string path,int x, int y, std::string id, int width, int height, bool rectangle) {
 	this->x=x;
 	this->y=y;
 	this->path=path;
-	this->capture=cv::VideoCapture(this->path+".avi");
+	this->capture=cv::VideoCapture(this->path+FORMAT);
 
 	this->width=width;
 	this->height=height;
@@ -42,7 +43,7 @@ void Video::draw(cv::Mat bg)
 	else
 	{
 		this->is_end=1;
-		this->capture=cv::VideoCapture(this->path+".avi");
+		this->capture=cv::VideoCapture(this->path+FORMAT);
 	}
 	if(rectangle)
 	{
@@ -61,11 +62,12 @@ void Video::changeValue(int x, int y)
 
 void Video::changeState()
 {
-	this->capture=cv::VideoCapture(this->path+".avi");
+	this->capture=cv::VideoCapture(this->path+FORMAT);
 	this->capture >> this->frame;
 }
 
-void Video::Reload(std::string name)
+void Video::Reload(std::string path)
 {
-
+	this->path=path;
+	this->capture=cv::VideoCapture(this->path+FORMAT);
 }
