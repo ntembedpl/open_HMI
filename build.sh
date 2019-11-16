@@ -1,7 +1,8 @@
 #!/bin/bash
 
-git reset --hard
-git pull
+mkdir build
+#git reset --hard
+#git pull
 
 cd build
 cmake ..
