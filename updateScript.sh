@@ -9,5 +9,3 @@ else
 	cd ..
 	cp -r -v ./open_HMI $1
 fi
-
-

@@ -11,5 +11,3 @@ cp -r -v ./videos/pr3.mp4 ./data/videos/
 cp -r -v ./videos/pr4.mp4 ./data/videos/
 cp -r -v ./videos/pr5.mp4 ./data/videos/
 cp -r -v ./videos/pr6.mp4 ./data/videos/
-
-
