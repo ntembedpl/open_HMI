@@ -12,6 +12,7 @@ rm ./data/videos/pr6.mp4
 cp -r -v ./videos/intro.mp4 ./data/Screen1/eng/s0/
 cp -r -v ./videos/intro.mp4 ./data/Screen2/eng/s0/
 cp -r -v ./videos/vid.mp4 ./data/Screen1/eng/s1/
+cp -r -v ./videos/vid.mp4 ./data/Screen2/eng/s1/
 cp -r -v ./videos/crio.mp4 ./data/videos/
 cp -r -v ./videos/hot.mp4 ./data/videos/
 cp -r -v ./videos/pr1.mp4 ./data/videos/
