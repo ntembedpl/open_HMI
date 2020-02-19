@@ -639,6 +639,11 @@ cv::waitKeyEx(500);
                 gui1->screen_vector[1]->VideoReload(11,("./"+config->config.videos+"/pr1").c_str());
                 gui2->screen_vector[1]->VideoReload(0,("./"+config->config.videos+"/pr1").c_str());
             }
+            else if(signal==3)
+            {
+                gui1->screen_vector[1]->VideoReload(11,("./"+config->config.videos+"/manual").c_str());
+                gui2->screen_vector[1]->VideoReload(0,("./"+config->config.videos+"/manual").c_str());
+            }
             else if(signal==5)
             {
                 gui1->screen_vector[1]->VideoReload(11,("./"+config->config.videos+"/pr2").c_str());
