@@ -14,9 +14,9 @@ GUI::GUI(std::string data_path,std::string WindowName,int posX, int posY) {
 	this->enable=true;
 	this->WinName=WindowName;
 
-	cv::namedWindow(this->WinName,CV_WINDOW_NORMAL);
+	cv::namedWindow(this->WinName,cv::WINDOW_NORMAL);
 	cv::moveWindow(this->WinName,posX,posY);
-	cv::setWindowProperty(this->WinName,CV_WND_PROP_FULLSCREEN,CV_WINDOW_FULLSCREEN);
+	cv::setWindowProperty(this->WinName,cv::WND_PROP_FULLSCREEN,cv::WINDOW_FULLSCREEN);
 }
 
 GUI::~GUI() {

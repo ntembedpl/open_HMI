@@ -55,7 +55,7 @@ void Video::changeValue(int x, int y)
 {
 	this->pause=x;
 	if(y==0) {
-		this->capture.set(CV_CAP_PROP_POS_FRAMES, 0);
+		this->capture.set(cv::CAP_PROP_POS_FRAMES, 0);
 		this->capture >> this->frame;
 	}
 }
