@@ -37,7 +37,7 @@ void Video::draw(cv::Mat bg)
 
 	if(frame.cols!=0)
 	{
-		cv::resize(this->frame,this->frame,cv::Size(this->width,this->height),0,0,CV_INTER_CUBIC);
+		cv::resize(this->frame,this->frame,cv::Size(this->width,this->height),0,0,cv::INTER_CUBIC);
         this->frame.copyTo(bg(cv::Rect(this->x,this->y,this->frame.cols,this->frame.rows)));
 	}
 	else

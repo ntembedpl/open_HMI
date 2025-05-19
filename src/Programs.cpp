@@ -77,6 +77,7 @@ int Programs::Refresh()
         this->Debug();
 #endif
     }
+    return 0;//Here was error!!!
 }
 
 void Programs::SetProgram(std::string path)

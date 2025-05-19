@@ -21,7 +21,7 @@ Image::Image(std::string path, int x, int y, double resize,std::string id) {
 
 	while(img.cols!=0)
 	{
-		cv::resize(img,img,cv::Size(),resize,resize,cv::NTER_CUBIC);
+		cv::resize(img,img,cv::Size(),resize,resize,cv::INTER_CUBIC);
 		this->img_vector.push_back(img);
 		this->state++;
 		img=cv::imread(this->path+"_"+std::to_string(this->state)+".png",cv::IMREAD_UNCHANGED);
