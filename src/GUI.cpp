@@ -15,6 +15,7 @@ GUI::GUI(std::string data_path,std::string WindowName,int posX, int posY) {
 	this->WinName=WindowName;
 
 	cv::namedWindow(this->WinName,cv::WINDOW_NORMAL);
+	cv::waitKey(100);//Vital delay!!!
 	cv::moveWindow(this->WinName,posX,posY);
 	cv::setWindowProperty(this->WinName,cv::WND_PROP_FULLSCREEN,cv::WINDOW_FULLSCREEN);
 }
