@@ -1,7 +1,8 @@
 cmake_minimum_required (VERSION 3.5)
 project (operator_HMI)
 
-find_package (OpenCV 3 REQUIRED)
+set(OpenCV_DIR ../libs/lib/cmake/opencv4)
+find_package (OpenCV 4 REQUIRED)
 set(CMAKE_CXX_STANDARD 14)
 
 set(CMAKE_BUILD_TYPE Release)
